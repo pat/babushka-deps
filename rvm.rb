@@ -4,7 +4,7 @@ dep 'rvm' do
   }
   meet {
     # Install from Github using provided script
-    shell 'bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )'
+    shell 'bash -c "`curl http://rvm.beginrescueend.com/releases/rvm-install-head`"'
     
     shell 'bash -c "source ~/.rvm/scripts/rvm"'
     shell 'bash -c "rvm notes"'
