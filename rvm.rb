@@ -1,5 +1,5 @@
 dep 'rvm' do
-  helper :path {
+  helper(:path) {
     '~/.rvm/scripts/rvm'
   }
   
@@ -21,19 +21,19 @@ end
 dep 'fish rvm' do
   requires 'fish', 'rvm'
   
-  helper :github {
+  helper(:github) {
     'http://github.com/eventualbuddha/fish-nuggets/raw/master/functions'
   }
-  helper :functions {
+  helper(:functions) {
     '~/.config/fish/functions'
   }
-  helper :rvm_env {
+  helper(:rvm_env) {
     functions / '__bash_env_to_fish.fish'
   }
-  helper :rvm_fish {
+  helper(:rvm_fish) {
     functions / 'rvm.fish'
   }
-  helper :cd_fish {
+  helper(:cd_fish) {
     functions / 'cd.fish'
   }
   
