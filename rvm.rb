@@ -38,7 +38,7 @@ dep 'fish rvm' do
   }
   
   met? {
-    which rvm_env
+    shell 'functions __bash_env_to_fish'
   }
   meet {
     shell "curl --create-dirs -o #{rvm_env} #{github}/__bash_env_to_fish.fish"
