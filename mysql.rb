@@ -17,12 +17,17 @@ pkg 'mysql software' do
   helper(:launch_agent?) {
     shell "launchctl list | grep '#{plist}'"
   }
+  helper(:my_cnf) {
+    '/etc/my.cnf'
+  }
   
   met? {
-    which 'mysql' && launch_agent?
+    which 'mysql' && my_cnf.p.exists? && launch_agent?
   }
   meet {
     install_packages!
+    log "Writing configuration file for MySQL"
+    render_erb 'mysql/my.cnf', :to => my_cnf, :sudo => true
     shell 'mysql_install_db'
     shell "cp #{brew_path}/#{plist} #{launch_agents}"
     shell "launchctl load -w #{launch_agents}/#{plist}"
