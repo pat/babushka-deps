@@ -5,14 +5,21 @@ pkg 'mysql software' do
   }
   provides 'mysql'
   
+  helper(:brew_path) {
+    Babushka::BrewHelper.brew_path_for('mysql')
+  }
   helper(:plist) {
     'com.mysql.mysqld.plist'
   }
-  helper(:brew_path) {
-    BrewHelper.brew_path_for('mysql')
-  }
   helper(:launch_agents) {
     '~/Library/LaunchAgents'
+  }
+  helper(:launch_agent?) {
+    shell "launchctl list | grep '#{plist}'"
+  }
+  
+  met? {
+    which 'mysql' && launch_agent?
   }
   
   after(:on => :osx) {
