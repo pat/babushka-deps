@@ -21,8 +21,8 @@ pkg 'mysql software' do
   met? {
     which 'mysql' && launch_agent?
   }
-  
-  after(:on => :osx) {
+  meet {
+    install_packages!
     shell 'mysql_install_db'
     shell "cp #{brew_path}/#{plist} #{launch_agents}"
     shell "launchctl load -w #{launch_agents}/#{plist}"
