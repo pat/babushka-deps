@@ -22,7 +22,7 @@ pkg 'mysql software' do
   }
   
   met? {
-    which 'mysql' && my_cnf.p.exists? && launch_agent?
+    which('mysql') && my_cnf.p.exists? && launch_agent?
   }
   meet {
     install_packages!
