@@ -14,15 +14,13 @@ pkg 'mysql software' do
   helper(:launch_agents) {
     '~/Library/LaunchAgents'
   }
-  helper(:launch_agent?) {
-    shell "launchctl list | grep '#{plist}'"
-  }
   helper(:my_cnf) {
     '/etc/my.cnf'
   }
   
   met? {
-    which('mysql') && my_cnf.p.exists? && launch_agent?
+    which('mysql') && my_cnf.p.exists? &&
+      !shell('launchctl list')[/#{plist}/].nil?
   }
   meet {
     install_packages!
