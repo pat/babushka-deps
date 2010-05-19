@@ -20,11 +20,10 @@ pkg 'mysql software' do
   
   met? {
     which('mysql') && my_cnf.p.exists? &&
-      !shell('launchctl list')[/#{plist}/].nil?
+      !shell('launchctl list')[/com\.mysql\.mysqld/].nil?
   }
   meet {
     install_packages!
-    log "Writing configuration file for MySQL"
     render_erb 'mysql/my.cnf', :to => my_cnf, :sudo => true
     shell 'mysql_install_db'
     shell "cp #{brew_path}/#{plist} #{launch_agents}"
