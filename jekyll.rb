@@ -1,4 +1,4 @@
-gem 'jekyll' do
+dep 'jekyll', :template => 'gem' do
   requires 'pygments'
 end
 

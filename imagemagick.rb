@@ -1,10 +1,10 @@
-pkg 'imagemagick' do
+dep 'imagemagick', :template => 'managed' do
   installs {
     via :brew, 'imagemagick'
   }
   provides 'convert'
 end
 
-gem 'rmagick' do
+dep 'rmagick', :template => 'gem' do
   requires 'imagemagick'
 end

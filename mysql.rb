@@ -1,4 +1,4 @@
-pkg 'mysql software' do
+dep 'mysql software', :template => 'managed' do
   installs {
     via :apt, %w[mysql-server libmysqlclient15-dev]
     via :brew, 'mysql'
