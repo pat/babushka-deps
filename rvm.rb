@@ -46,3 +46,13 @@ dep 'fish rvm' do
     shell "curl -o #{cd_fish} #{github}/cd.fish"
   }
 end
+
+dep 'rvm_ruby' do
+  helper(:path) { '/usr/local/bin/rvm_ruby' }
+  met? {
+    path.p.file?
+  }
+  meet {
+    render_erb 'rvm/rvm_ruby', :to => path, :sudo => true
+  }
+end
