@@ -23,7 +23,7 @@ dep 'mysql software', :template => 'managed' do
       !shell('launchctl list')[/com\.mysql\.mysqld/].nil?
   }
   meet {
-    install_packages!
+    pkg_manager.install! installs
     render_erb 'mysql/my.cnf', :to => my_cnf, :sudo => true
     shell 'mysql_install_db'
     shell "cp #{brew_path}/#{plist} #{launch_agents}"
